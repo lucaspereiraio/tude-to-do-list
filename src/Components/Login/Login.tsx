@@ -2,6 +2,8 @@ import { Box, Button, Container, TextField, Typography } from "@mui/material";
 import React, { ChangeEvent, useState } from "react";
 import "./Login.css";
 
+//FAZER: o styling, colocar o erro dos textfields do material ui, implementar rotas
+
 //Regex para validar o email
 const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -13,7 +15,7 @@ export const Login = () => {
   const handleLogin = () => {
     //Verificação regex para o email
     if (!isEmail.test(email)) {
-      alert("Insira um email válido");
+      alert("Insira um email válido!");
       return;
     }
     console.log("Email:", email);
@@ -43,6 +45,7 @@ export const Login = () => {
             variant="outlined"
             value={email}
             onChange={handleEmail}
+            autoComplete="email"
           />
           <TextField
             required
