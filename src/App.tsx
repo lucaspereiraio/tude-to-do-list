@@ -5,6 +5,7 @@ import { Register } from "./Components/Register/Register";
 import { Header } from "./Components/Header/Header";
 import { CreateItem } from "./Components/CreateItem/CreateItem";
 import { ToDoItem } from "./Components/ToDoItem/ToDoItem";
+import { List } from "@mui/material";
 
 interface tasksTypes {
   taskId: number;
@@ -30,21 +31,26 @@ function App() {
     setTasks([...tasks, newTask]);
   };
 
+  const handleDeleteItem = (taskId: number) => {
+    setTasks(tasks.filter((task) => task.taskId !== taskId));
+  };
+
   return (
     <div className="App">
       <Header />
       <Login />
       <Register />
       <CreateItem onAdd={handleCreateItem} />
-      <div>
+      <List>
         {tasks.map((task) => (
           <ToDoItem
             key={task.taskId}
             task={task.taskText}
             color={task.taskColor}
+            onDelete={() => handleDeleteItem(task.taskId)}
           />
         ))}
-      </div>
+      </List>
     </div>
   );
 }
