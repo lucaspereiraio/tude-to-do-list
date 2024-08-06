@@ -2,7 +2,6 @@ import {
   Box,
   Checkbox,
   IconButton,
-  List,
   ListItem,
   ListItemIcon,
   TextField,

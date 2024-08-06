@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import { Login } from "./Components/Login/Login";
 import { Register } from "./Components/Register/Register";
@@ -29,21 +29,34 @@ function App() {
       taskColor: taskData.taskColor,
     };
 
-    setTasks([...tasks, newTask]);
+    setTasks((prevTasks) => {
+      const updatedTasks = [...prevTasks, newTask];
+      //Log de criação de uma task
+      console.log("Tasks after creation:", updatedTasks);
+      return updatedTasks;
+    });
   };
 
   //Gerenciamento de itens (atualização)
   const handleUpdateItemText = (taskId: number, newText: string) => {
-    setTasks((prevTasks) =>
-      prevTasks.map((task) =>
+    setTasks((prevTasks) => {
+      const updatedTasks = prevTasks.map((task) =>
         task.taskId === taskId ? { ...task, taskText: newText } : task
-      )
-    );
+      );
+      //Log de atualização de uma task
+      console.log("Tasks after update:", updatedTasks);
+      return updatedTasks;
+    });
   };
 
   //Gerenciamento de itens (exclusão)
   const handleDeleteItem = (taskId: number) => {
-    setTasks(tasks.filter((task) => task.taskId !== taskId));
+    setTasks((prevTasks) => {
+      const updatedTasks = prevTasks.filter((task) => task.taskId !== taskId);
+      //Log de exclusão de uma task
+      console.log("Tasks after deletion:", updatedTasks);
+      return updatedTasks;
+    });
   };
 
   return (
