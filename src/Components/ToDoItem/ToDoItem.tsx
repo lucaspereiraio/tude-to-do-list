@@ -5,33 +5,47 @@ import {
   List,
   ListItem,
   ListItemIcon,
-  ListItemText,
+  TextField,
 } from "@mui/material";
-import React from "react";
+import React, { ChangeEvent, useState } from "react";
 import "./ToDoItem.css";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 export const ToDoItem = ({
-  task,
+  taskId,
+  text,
   color,
+  onUpdate,
   onDelete,
 }: {
-  task: string;
+  taskId: number;
+  text: string;
   color: string;
+  onUpdate: (taskId: number, newText: string) => void;
   onDelete: () => void;
 }) => {
+  const [taskText, setTaskText] = useState(text);
+
+  const handleTaskTextChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const newValue = e.target.value;
+    setTaskText(newValue);
+    onUpdate(taskId, newValue);
+  };
+
   return (
-    <List>
-      <ListItem className="todo-item">
-        <ListItemIcon>
-          <Checkbox edge="start" />
-        </ListItemIcon>
-        <ListItemText primary={task} />
-        <Box className="color-dot" style={{ backgroundColor: color }} />
-        <IconButton edge="end" aria-label="delete" onClick={onDelete}>
-          <DeleteIcon />
-        </IconButton>
-      </ListItem>
-    </List>
+    <ListItem className="todo-item">
+      <ListItemIcon>
+        <Checkbox edge="start" />
+      </ListItemIcon>
+      <TextField
+        variant="standard"
+        value={taskText}
+        onChange={handleTaskTextChange}
+      />
+      <Box className="color-dot" style={{ backgroundColor: color }} />
+      <IconButton edge="end" aria-label="delete" onClick={onDelete}>
+        <DeleteIcon />
+      </IconButton>
+    </ListItem>
   );
 };

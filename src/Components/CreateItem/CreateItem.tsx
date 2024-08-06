@@ -14,10 +14,12 @@ export const CreateItem = ({
   const [taskText, setTaskText] = useState<string>("");
   const [taskColor, setTaskColor] = useState<string>("");
 
+  //Gerenciamento de texto da nova tarefa
   const handleTaskTextChange = (e: ChangeEvent<HTMLInputElement>) => {
     setTaskText(e.target.value);
   };
 
+  //Gerenciamento de cor da nova tarefa
   const handleTaskColorChange = (e: ChangeEvent<HTMLInputElement>) => {
     setTaskColor(e.target.value);
   };

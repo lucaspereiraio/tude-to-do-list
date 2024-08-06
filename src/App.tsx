@@ -7,6 +7,10 @@ import { CreateItem } from "./Components/CreateItem/CreateItem";
 import { ToDoItem } from "./Components/ToDoItem/ToDoItem";
 import { List } from "@mui/material";
 
+//Placeholder nos campos de email
+//Olho icon para ver a senha
+//icone adicionar
+
 interface tasksTypes {
   taskId: number;
   taskText: string;
@@ -16,14 +20,11 @@ interface tasksTypes {
 function App() {
   const [tasks, setTasks] = useState<tasksTypes[]>([]);
 
-  // const generateHighestId = () => {
-  //   const tasksId = tasks.map((item) => tasks.taskId);
-  //   return tasksId.length ? Math.max(...tasksId) + 1 : 1;
-  // };
-
+  //Gerenciamento de itens (criação)
   const handleCreateItem = (taskData: Omit<tasksTypes, "taskId">) => {
     const newTask: tasksTypes = {
-      taskId: tasks.length ? tasks[tasks.length - 1].taskId + 1 : 1, // Incrementa o ID ou começa com 1
+      //Id inicial será 1 ou terá o incremento de 1
+      taskId: tasks.length ? tasks[tasks.length - 1].taskId + 1 : 1,
       taskText: taskData.taskText,
       taskColor: taskData.taskColor,
     };
@@ -31,6 +32,16 @@ function App() {
     setTasks([...tasks, newTask]);
   };
 
+  //Gerenciamento de itens (atualização)
+  const handleUpdateItemText = (taskId: number, newText: string) => {
+    setTasks((prevTasks) =>
+      prevTasks.map((task) =>
+        task.taskId === taskId ? { ...task, taskText: newText } : task
+      )
+    );
+  };
+
+  //Gerenciamento de itens (exclusão)
   const handleDeleteItem = (taskId: number) => {
     setTasks(tasks.filter((task) => task.taskId !== taskId));
   };
@@ -45,8 +56,10 @@ function App() {
         {tasks.map((task) => (
           <ToDoItem
             key={task.taskId}
-            task={task.taskText}
+            taskId={task.taskId}
+            text={task.taskText}
             color={task.taskColor}
+            onUpdate={handleUpdateItemText}
             onDelete={() => handleDeleteItem(task.taskId)}
           />
         ))}
