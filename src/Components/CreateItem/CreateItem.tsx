@@ -15,6 +15,7 @@ import "./CreateItem.css";
 interface newTaskTypes {
   taskText: string;
   taskColor: string;
+  taskDescription: string;
 }
 
 interface colorOptionTypes {
@@ -31,6 +32,7 @@ export const CreateItem = ({
 }) => {
   const [taskText, setTaskText] = useState<string>("");
   const [taskColor, setTaskColor] = useState<string>("");
+  const [taskDescription, setTaskDescription] = useState<string>("");
 
   //Gerenciamento de texto da nova tarefa
   const handleTaskTextChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -42,16 +44,24 @@ export const CreateItem = ({
     setTaskColor(e.target.value as string);
   };
 
+  //Gerenciamento de texto da nova tarefa
+  const handleTaskDescriptionChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setTaskDescription(e.target.value);
+  };
+
   const handleSubmit = () => {
     if (taskText.trim()) {
       const newTask: newTaskTypes = {
         taskText: taskText.trim(),
         taskColor: taskColor.trim(),
+        taskDescription: taskDescription.trim(),
       };
 
       onAdd(newTask);
-      setTaskText(""); // Limpar campo de texto após adicionar a tarefa
-      setTaskColor(""); // Limpar campo de cor após adicionar a tarefa
+      //Limpeza dos campos após adicionar nova tarefa
+      setTaskText("");
+      setTaskColor("");
+      setTaskDescription("");
     }
   };
 
@@ -88,11 +98,19 @@ export const CreateItem = ({
           ))}
         </Select>
       </FormControl>
+      <TextField
+        required
+        label="Description"
+        multiline
+        rows={4}
+        value={taskDescription}
+        onChange={handleTaskDescriptionChange}
+      />
       <Button
         className="create-task-button"
         variant="contained"
         onClick={handleSubmit}
-        disabled={!taskText || !taskColor}
+        disabled={!taskText || !taskColor || !taskDescription}
       >
         Create a new task
       </Button>

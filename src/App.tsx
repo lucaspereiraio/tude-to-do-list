@@ -7,21 +7,22 @@ import { CreateItem } from "./Components/CreateItem/CreateItem";
 import { ToDoItem } from "./Components/ToDoItem/ToDoItem";
 import { List } from "@mui/material";
 
+// Funcionalidades UX
+
 //icone adicionar no create task
-//avisos de erro vermelhos nos textfields (validation) e colocar também um form props de dicas de inputs
 //Autofocus na proxima do create
 //onEnter criar
 //onEnter no todo sai o da edição
-//FAZER: o styling, colocar o erro dos textfields do material ui, implementar rotas
+//Formatar color picker
 
-//disabled no login e register
+//Funcionalidades NECESSARIAS
 
 //Tela de listar atividades
-//Editar cor
+//fazer rotas de paginas
 //botoes funcionais registro e login
-//descrição da atividade
-//editar descrição
-//ver como ta funcionando o handlesubmit
+//required no todo tasks
+//editor de cores no todo
+//handleUpdateColor
 //fazer rotas de paginas
 //fazer design e responsividade
 
@@ -29,6 +30,7 @@ interface tasksTypes {
   taskId: number;
   taskText: string;
   taskColor: string;
+  taskDescription: string;
 }
 
 function App() {
@@ -50,6 +52,7 @@ function App() {
       taskId: tasks.length ? tasks[tasks.length - 1].taskId + 1 : 1,
       taskText: taskData.taskText,
       taskColor: taskData.taskColor,
+      taskDescription: taskData.taskDescription,
     };
 
     setTasks((prevTasks) => {
@@ -61,10 +64,16 @@ function App() {
   };
 
   //Gerenciamento de itens (atualização)
-  const handleUpdateItemText = (taskId: number, newText: string) => {
+  const handleUpdateItem = (
+    taskId: number,
+    newText: string,
+    newDesc: string
+  ) => {
     setTasks((prevTasks) => {
       const updatedTasks = prevTasks.map((task) =>
-        task.taskId === taskId ? { ...task, taskText: newText } : task
+        task.taskId === taskId
+          ? { ...task, taskText: newText, taskDescription: newDesc }
+          : task
       );
       //Log de atualização de uma task
       console.log("Tasks after update:", updatedTasks);
@@ -95,7 +104,8 @@ function App() {
             taskId={task.taskId}
             text={task.taskText}
             color={task.taskColor}
-            onUpdate={handleUpdateItemText}
+            description={task.taskDescription}
+            onUpdate={handleUpdateItem}
             onDelete={() => handleDeleteItem(task.taskId)}
           />
         ))}
