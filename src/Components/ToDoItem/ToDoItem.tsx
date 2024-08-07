@@ -36,7 +36,7 @@ export const ToDoItem = ({
     <Container>
       <ListItem className="todo-item">
         <ListItemIcon>
-          <Checkbox />
+          <Checkbox edge="start" />
         </ListItemIcon>
         <TextField
           variant="standard"
@@ -44,7 +44,7 @@ export const ToDoItem = ({
           onChange={handleTaskTextChange}
         />
         <Box className="color-dot" style={{ backgroundColor: color }} />
-        <IconButton aria-label="delete" onClick={onDelete}>
+        <IconButton edge="end" aria-label="delete" onClick={onDelete}>
           <DeleteIcon />
         </IconButton>
       </ListItem>

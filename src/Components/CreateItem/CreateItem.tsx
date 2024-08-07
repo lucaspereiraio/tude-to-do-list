@@ -65,12 +65,11 @@ export const CreateItem = ({
         value={taskText}
         onChange={handleTaskTextChange}
       />
-      <FormControl className="priority-form">
-        <InputLabel>Priority *</InputLabel>
+      <FormControl required className="priority-form">
+        <InputLabel>Priority</InputLabel>
         <Select
-          required
           className="priority-selector"
-          label="Priority *"
+          label="Priority"
           value={taskColor}
           onChange={handleTaskColorChange}
         >

@@ -7,12 +7,18 @@ import { CreateItem } from "./Components/CreateItem/CreateItem";
 import { ToDoItem } from "./Components/ToDoItem/ToDoItem";
 import { List } from "@mui/material";
 
-//Placeholder nos campos de email
-//Olho icon para ver a senha
-//icone adicionar
-//Basear cor no trello
+//icone adicionar no create task
+//avisos de erro vermelhos nos textfields (validation) e colocar também um form props de dicas de inputs
 //Autofocus na proxima do create
 //onEnter criar
+//onEnter no todo sai o da edição
+//FAZER: o styling, colocar o erro dos textfields do material ui, implementar rotas
+//disabled no login e register
+//Tela de listar atividades
+//Editar cor
+//botoes funcionais registro e login
+//descrição da atividade
+//ver como ta funcionando o handlesubmit
 
 interface tasksTypes {
   taskId: number;
@@ -23,7 +29,7 @@ interface tasksTypes {
 function App() {
   const [tasks, setTasks] = useState<tasksTypes[]>([]);
 
-  //Opções de cor baseadas na urgência
+  //Opções de cor baseadas na prioridade
   const colorOptions = [
     { color: "#FF0000", label: "Urgent" },
     { color: "#FFA500", label: "High" },

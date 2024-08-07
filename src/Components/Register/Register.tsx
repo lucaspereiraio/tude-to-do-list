@@ -1,6 +1,18 @@
-import { Box, Button, Container, TextField, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Container,
+  FormControl,
+  IconButton,
+  InputAdornment,
+  InputLabel,
+  OutlinedInput,
+  TextField,
+  Typography,
+} from "@mui/material";
 import React, { ChangeEvent, useState } from "react";
 import "./Register.css";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const isName = /^[A-Za-z\s]+$/;
@@ -9,6 +21,7 @@ export const Register = () => {
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [showPassword, setShowPassword] = useState<boolean>(false);
 
   //Gerenciamento de registro
   const handleRegister = () => {
@@ -35,6 +48,15 @@ export const Register = () => {
 
   const handlePassword = (e: ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
+  };
+
+  // Gerenciamento de visibilidade da senha
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
+
+  const handleMouseDownPassword = (
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
+    event.preventDefault();
   };
 
   return (
@@ -65,15 +87,32 @@ export const Register = () => {
             onChange={handleEmail}
             autoComplete="email"
           />
-          <TextField
-            required
-            label="Password"
-            type="password"
-            variant="outlined"
-            value={password}
-            onChange={handlePassword}
-            autoComplete="new-password"
-          />
+          <FormControl required variant="outlined">
+            <InputLabel htmlFor="outlined-adornment-password">
+              Password
+            </InputLabel>
+            <OutlinedInput
+              required
+              id="outlined-adornment-password"
+              type={showPassword ? "text" : "password"}
+              value={password}
+              onChange={handlePassword}
+              autoComplete="new-password"
+              endAdornment={
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={handleClickShowPassword}
+                    onMouseDown={handleMouseDownPassword}
+                    edge="end"
+                  >
+                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                  </IconButton>
+                </InputAdornment>
+              }
+              label="Password"
+            />
+          </FormControl>
         </Box>
         <Box className="inner-box-buttons">
           <Button variant="contained" onClick={handleRegister}>
