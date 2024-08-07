@@ -22,15 +22,32 @@ export const Login = () => {
   const [password, setPassword] = useState<string>("");
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
+  //States de erro
+  const [emailError, setEmailError] = useState<string>("");
+  const [passwordError, setPasswordError] = useState<string>("");
+
   //Gerenciamento de login
   const handleLogin = () => {
+    let valid = true;
     //Verificação regex para o email
     if (!isEmail.test(email)) {
-      alert("Insira um email válido!");
-      return;
+      setEmailError("Insira um email válido!");
+      valid = false;
+    } else {
+      setEmailError("");
     }
-    console.log("Email:", email);
-    console.log("Password:", password);
+
+    if (password.length < 6) {
+      setPasswordError("Senha inválida! Tem no mínimo 6 caracteres.");
+      valid = false;
+    } else {
+      setPasswordError("");
+    }
+
+    if (valid) {
+      console.log("Email:", email);
+      console.log("Password:", password);
+    }
   };
 
   //Gerenciamento de email
@@ -66,6 +83,8 @@ export const Login = () => {
             value={email}
             onChange={handleEmail}
             autoComplete="email"
+            error={Boolean(emailError)}
+            helperText={emailError}
           />
           <FormControl required variant="outlined">
             <InputLabel htmlFor="outlined-adornment-password">
@@ -92,6 +111,9 @@ export const Login = () => {
               }
               label="Password"
             />
+            {passwordError && (
+              <Typography color="error">{passwordError}</Typography>
+            )}
           </FormControl>
         </Box>
         <Box className="inner-box-buttons">

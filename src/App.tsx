@@ -13,12 +13,17 @@ import { List } from "@mui/material";
 //onEnter criar
 //onEnter no todo sai o da edição
 //FAZER: o styling, colocar o erro dos textfields do material ui, implementar rotas
+
 //disabled no login e register
+
 //Tela de listar atividades
 //Editar cor
 //botoes funcionais registro e login
 //descrição da atividade
+//editar descrição
 //ver como ta funcionando o handlesubmit
+//fazer rotas de paginas
+//fazer design e responsividade
 
 interface tasksTypes {
   taskId: number;

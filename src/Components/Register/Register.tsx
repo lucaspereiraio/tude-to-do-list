@@ -23,18 +23,41 @@ export const Register = () => {
   const [password, setPassword] = useState<string>("");
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
+  //States de erro
+  const [nameError, setNameError] = useState<string>("");
+  const [emailError, setEmailError] = useState<string>("");
+  const [passwordError, setPasswordError] = useState<string>("");
+
   //Gerenciamento de registro
   const handleRegister = () => {
+    let valid = true;
+
     if (!isEmail.test(email)) {
-      alert("Insira um email válido!");
-      return;
-    } else if (!isName.test(name)) {
-      alert("Insira um nome válido!");
-      return;
+      setEmailError("Insira um email válido!");
+      valid = false;
+    } else {
+      setEmailError("");
     }
-    console.log("Name:", name);
-    console.log("Email:", email);
-    console.log("Password:", password);
+
+    if (!isName.test(name)) {
+      setNameError("Insira um nome válido!");
+      valid = false;
+    } else {
+      setNameError("");
+    }
+
+    if (password.length < 6) {
+      setPasswordError("A senha deve ter pelo menos 6 caracteres.");
+      valid = false;
+    } else {
+      setPasswordError("");
+    }
+
+    if (valid) {
+      console.log("Name:", name);
+      console.log("Email:", email);
+      console.log("Password:", password);
+    }
   };
 
   //Gerenciamento dos inputs
@@ -78,6 +101,8 @@ export const Register = () => {
             value={name}
             onChange={handleName}
             autoComplete="name"
+            error={Boolean(nameError)}
+            helperText={nameError}
           />
           <TextField
             required
@@ -86,6 +111,8 @@ export const Register = () => {
             value={email}
             onChange={handleEmail}
             autoComplete="email"
+            error={Boolean(emailError)}
+            helperText={emailError}
           />
           <FormControl required variant="outlined">
             <InputLabel htmlFor="outlined-adornment-password">
@@ -112,6 +139,9 @@ export const Register = () => {
               }
               label="Password"
             />
+            {passwordError && (
+              <Typography color="error">{passwordError}</Typography>
+            )}
           </FormControl>
         </Box>
         <Box className="inner-box-buttons">
