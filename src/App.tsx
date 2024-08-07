@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./App.css";
 import { Login } from "./Components/Login/Login";
 import { Register } from "./Components/Register/Register";
@@ -10,6 +10,9 @@ import { List } from "@mui/material";
 //Placeholder nos campos de email
 //Olho icon para ver a senha
 //icone adicionar
+//Basear cor no trello
+//Autofocus na proxima do create
+//onEnter criar
 
 interface tasksTypes {
   taskId: number;
@@ -19,6 +22,15 @@ interface tasksTypes {
 
 function App() {
   const [tasks, setTasks] = useState<tasksTypes[]>([]);
+
+  //Opções de cor baseadas na urgência
+  const colorOptions = [
+    { color: "#FF0000", label: "Urgent" },
+    { color: "#FFA500", label: "High" },
+    { color: "#FFFF00", label: "Moderate" },
+    { color: "#008000", label: "Low" },
+    { color: "#0000FF", label: "Information" },
+  ];
 
   //Gerenciamento de itens (criação)
   const handleCreateItem = (taskData: Omit<tasksTypes, "taskId">) => {
@@ -64,7 +76,7 @@ function App() {
       <Header />
       <Login />
       <Register />
-      <CreateItem onAdd={handleCreateItem} />
+      <CreateItem onAdd={handleCreateItem} colorOptions={colorOptions} />
       <List>
         {tasks.map((task) => (
           <ToDoItem
