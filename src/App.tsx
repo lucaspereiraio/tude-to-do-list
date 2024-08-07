@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
 import { Login } from "./Components/Login/Login";
 import { Register } from "./Components/Register/Register";
@@ -20,17 +21,18 @@ import { List } from "@mui/material";
 
 //Funcionalidades NECESSARIAS
 
+//localstorage
+//ischecked?
 //Tela de listar atividades
 //fazer rotas de paginas
 //botoes funcionais registro e login
-//required no todo tasks
-//editor de cores no todo
-//handleUpdateColor
+//required no todo items
 //fazer rotas de paginas
 //fazer design e responsividade
 
 interface tasksTypes {
   taskId: number;
+  // taskChecked: boolean;
   taskText: string;
   taskColor: string;
   taskDescription: string;
@@ -47,6 +49,19 @@ function App() {
     { color: "#008000", label: "Low" },
     { color: "#0000FF", label: "Information" },
   ];
+
+  // useEffect(() => {
+  //   const tasksLocalStorage = localStorage.getItem("tasks");
+  //   const jsonDataTasks = tasksLocalStorage && JSON.parse(tasksLocalStorage);
+
+  //   if (tasksLocalStorage) {
+  //     setTasks(jsonDataTasks);
+  //   }
+  // }, []);
+
+  // useEffect(() => {
+  //   localStorage.setItem("tasks", JSON.stringify(tasks));
+  // }, [tasks]);
 
   //Gerenciamento de itens (criação)
   const handleCreateItem = (taskData: Omit<tasksTypes, "taskId">) => {
@@ -101,26 +116,41 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <Header />
-      <Login />
-      <Register />
-      <CreateItem onAdd={handleCreateItem} colorOptions={colorOptions} />
-      <List>
-        {tasks.map((task) => (
-          <ToDoItem
-            key={task.taskId}
-            taskId={task.taskId}
-            text={task.taskText}
-            color={task.taskColor}
-            description={task.taskDescription}
-            colorOptions={colorOptions}
-            onUpdate={handleUpdateItem}
-            onDelete={() => handleDeleteItem(task.taskId)}
+    <Router>
+      <div className="App">
+        <Header />
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route
+            path="/create"
+            element={
+              <>
+                <CreateItem
+                  onAdd={handleCreateItem}
+                  colorOptions={colorOptions}
+                />
+                <List>
+                  {tasks.map((task) => (
+                    <ToDoItem
+                      key={task.taskId}
+                      taskId={task.taskId}
+                      text={task.taskText}
+                      color={task.taskColor}
+                      description={task.taskDescription}
+                      colorOptions={colorOptions}
+                      onUpdate={handleUpdateItem}
+                      onDelete={() => handleDeleteItem(task.taskId)}
+                    />
+                  ))}
+                </List>
+              </>
+            }
           />
-        ))}
-      </List>
-    </div>
+          <Route path="/" element={<Login />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
