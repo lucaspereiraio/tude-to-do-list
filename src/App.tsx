@@ -14,6 +14,9 @@ import { List } from "@mui/material";
 //onEnter criar
 //onEnter no todo sai o da edição
 //Formatar color picker
+//checked counter
+//erro typescript
+//erro console
 
 //Funcionalidades NECESSARIAS
 
@@ -67,12 +70,18 @@ function App() {
   const handleUpdateItem = (
     taskId: number,
     newText: string,
-    newDesc: string
+    newDesc: string,
+    newColor: string
   ) => {
     setTasks((prevTasks) => {
       const updatedTasks = prevTasks.map((task) =>
         task.taskId === taskId
-          ? { ...task, taskText: newText, taskDescription: newDesc }
+          ? {
+              ...task,
+              taskText: newText,
+              taskDescription: newDesc,
+              taskColor: newColor,
+            }
           : task
       );
       //Log de atualização de uma task
@@ -105,6 +114,7 @@ function App() {
             text={task.taskText}
             color={task.taskColor}
             description={task.taskDescription}
+            colorOptions={colorOptions}
             onUpdate={handleUpdateItem}
             onDelete={() => handleDeleteItem(task.taskId)}
           />
