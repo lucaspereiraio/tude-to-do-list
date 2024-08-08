@@ -11,7 +11,6 @@ import {
   Typography,
 } from "@mui/material";
 import React, { ChangeEvent, useState } from "react";
-import "./Register.css";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -51,7 +50,7 @@ export const Register = () => {
     }
 
     if (password.length < 6) {
-      setPasswordError("A senha deve ter pelo menos 6 caracteres.");
+      setPasswordError("Mínimo de 6 caracteres!");
       valid = false;
     } else {
       setPasswordError("");
@@ -87,76 +86,91 @@ export const Register = () => {
     event.preventDefault();
   };
 
+  // Padronização da mensagem de erro
+  const ErrorMessage = ({ message }: { message: string }) => (
+    <Typography color={"var(--alert-color)"} fontSize={"0.7rem"}>
+      {message}
+    </Typography>
+  );
+
   return (
-    <Container>
-      <Box className="outter-box">
-        <Typography
-          className="register-title"
-          variant="h4"
-          component="h1"
-          mb={2}
-        >
+    <Container
+      style={{
+        display: "flex",
+        height: "full",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyItems: "center",
+        marginTop: "3rem",
+        padding: "1rem",
+        borderRadius: "1rem",
+        boxShadow: "3",
+        gap: "1rem",
+        backgroundColor: "var(--bg-s-color)",
+      }}
+    >
+      <Typography variant="h4" component="h1">
+        Register
+      </Typography>
+      <Box display={"flex"} gap={"1rem"}>
+        <TextField
+          required
+          label="Name"
+          variant="outlined"
+          value={name}
+          onChange={handleName}
+          autoComplete="name"
+          error={Boolean(nameError)}
+          helperText={nameError ? <ErrorMessage message={nameError} /> : ""}
+          style={{ width: "11rem" }}
+        />
+        <TextField
+          required
+          label="Email"
+          variant="outlined"
+          value={email}
+          onChange={handleEmail}
+          autoComplete="email"
+          error={Boolean(emailError)}
+          helperText={emailError ? <ErrorMessage message={emailError} /> : ""}
+          style={{ width: "11rem" }}
+        />
+        <FormControl required variant="outlined">
+          <InputLabel error={Boolean(passwordError)}>Password</InputLabel>
+          <OutlinedInput
+            required
+            id="outlined-adornment-password"
+            type={showPassword ? "text" : "password"}
+            value={password}
+            onChange={handlePassword}
+            error={Boolean(passwordError)}
+            autoComplete="new-password"
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={handleClickShowPassword}
+                  onMouseDown={handleMouseDownPassword}
+                  edge="end"
+                >
+                  {showPassword ? <VisibilityOff /> : <Visibility />}
+                </IconButton>
+              </InputAdornment>
+            }
+            label="Password"
+            style={{ width: "11rem" }}
+          />
+          {passwordError && <ErrorMessage message={passwordError} />}
+        </FormControl>
+      </Box>
+      <Box display={"flex"} flexDirection={"column"} gap={"0.5rem"}>
+        <Button variant="contained" onClick={handleRegister}>
           Register
-        </Typography>
-        <Box className="inner-box-inputs">
-          <TextField
-            required
-            label="Name"
-            variant="outlined"
-            value={name}
-            onChange={handleName}
-            autoComplete="name"
-            error={Boolean(nameError)}
-            helperText={nameError}
-          />
-          <TextField
-            required
-            label="Email"
-            variant="outlined"
-            value={email}
-            onChange={handleEmail}
-            autoComplete="email"
-            error={Boolean(emailError)}
-            helperText={emailError}
-          />
-          <FormControl required variant="outlined">
-            <InputLabel htmlFor="outlined-adornment-password">
-              Password
-            </InputLabel>
-            <OutlinedInput
-              required
-              id="outlined-adornment-password"
-              type={showPassword ? "text" : "password"}
-              value={password}
-              onChange={handlePassword}
-              autoComplete="new-password"
-              endAdornment={
-                <InputAdornment position="end">
-                  <IconButton
-                    aria-label="toggle password visibility"
-                    onClick={handleClickShowPassword}
-                    onMouseDown={handleMouseDownPassword}
-                    edge="end"
-                  >
-                    {showPassword ? <VisibilityOff /> : <Visibility />}
-                  </IconButton>
-                </InputAdornment>
-              }
-              label="Password"
-            />
-            {passwordError && (
-              <Typography color="error">{passwordError}</Typography>
-            )}
-          </FormControl>
-        </Box>
-        <Box className="inner-box-buttons">
-          <Button variant="contained" onClick={handleRegister}>
-            Register
-          </Button>
-          <Button variant="text" component={Link} to="/login">
-            Already have an account? Login
-          </Button>
-        </Box>
+        </Button>
+        <Typography fontSize={"0.7rem"}>Already have an account?</Typography>
+        <Button variant="text" component={Link} to="/login">
+          Login
+        </Button>
       </Box>
     </Container>
   );
