@@ -1,46 +1,30 @@
-# Getting Started with Create React App
+# Tude Diniz To-Do List
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este projeto foi desenvolvido como parte do processo seletivo para a vaga de estágio em Desenvolvimento de Software na Tude Diniz. Trata-se de uma aplicação de lista de tarefas (To-Do List) construída utilizando React e Material-UI, com foco na criação, visualização, edição e exclusão de tarefas.
 
-## Available Scripts
+## Funcionalidades
 
-In the project directory, you can run:
+- Cadastro de Usuário: Tela de registro para novos usuários com validação de campos.
+- Login: Tela de login com autenticação de usuário.
+- Adicionar Tarefas: Formulário para criar novas tarefas, com a opção de definir prioridade e adicionar uma descrição.
+- Visualizar Tarefas: Lista de tarefas exibindo o título, descrição, prioridade e um checkbox para marcar a tarefa como concluída.
+- Editar Tarefas: Possibilidade de editar o texto, a cor (prioridade) e a descrição de uma tarefa existente.
+- Excluir Tarefas: Opção para remover tarefas da lista.
+- Persistência de Dados: As tarefas são armazenadas no localStorage, garantindo que os dados permaneçam após recarregar a página.
 
-### `npm start`
+## Tecnologias Utilizadas
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- React: Biblioteca JavaScript para construção de interfaces de usuário.
+- Material-UI: Biblioteca de componentes React para estilização e responsividade da interface.
+- TypeScript: Superconjunto do JavaScript que adiciona tipagem estática ao código.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Estrutura do Projeto
 
-### `npm test`
+O projeto é composto pelos seguintes componentes principais:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- App.tsx: Componente principal que gerencia o estado global das tarefas e a interação entre os componentes.
+- Header.tsx: Componente de cabeçalho que exibe o título da aplicação.
+- Login.tsx e Register.tsx: Componentes de autenticação para login e registro de usuários.
+- CreateItem.tsx: Componente que contém o formulário para criar novas tarefas.
+- ToDoItem.tsx: Componente que exibe e permite editar ou excluir uma tarefa existente.
+- PrintList.tsx: componente que printa a lista de tarefas por completo.
