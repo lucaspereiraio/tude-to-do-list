@@ -21,7 +21,7 @@ import { PrintList } from "./Components/PrintList/PrintList";
 //Funcionalidades NECESSARIAS
 
 //required no todo items
-//mensagens de erro dos inputs (login e register)
+//testes jest
 //printlist texto desc. passando da tela no mobile
 //fazer responsividade
 

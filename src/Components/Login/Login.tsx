@@ -73,6 +73,13 @@ export const Login = () => {
     event.preventDefault();
   };
 
+  // Padronização da mensagem de erro
+  const ErrorMessage = ({ message }: { message: string }) => (
+    <Typography color={"var(--alert-color)"} fontSize={"0.7rem"}>
+      {message}
+    </Typography>
+  );
+
   return (
     <Container
       style={{
@@ -105,11 +112,14 @@ export const Login = () => {
           onChange={handleEmail}
           autoComplete="email"
           error={Boolean(emailError)}
-          helperText={emailError}
+          helperText={emailError ? <ErrorMessage message={emailError} /> : ""}
           style={{ width: "16rem" }}
         />
         <FormControl required variant="outlined">
-          <InputLabel htmlFor="outlined-adornment-password">
+          <InputLabel
+            error={Boolean(passwordError)}
+            htmlFor="outlined-adornment-password"
+          >
             Password
           </InputLabel>
           <OutlinedInput
@@ -118,6 +128,7 @@ export const Login = () => {
             type={showPassword ? "text" : "password"}
             value={password}
             onChange={handlePassword}
+            error={Boolean(passwordError)}
             autoComplete="current-password"
             endAdornment={
               <InputAdornment position="end">
@@ -134,9 +145,7 @@ export const Login = () => {
             label="Password"
             style={{ width: "16rem" }}
           />
-          {passwordError && (
-            <Typography color="error">{passwordError}</Typography>
-          )}
+          {passwordError && <ErrorMessage message={passwordError} />}
         </FormControl>
       </Box>
       <Box display={"flex"} flexDirection={"column"} gap={"0.5rem"}>
