@@ -48,18 +48,21 @@ function App() {
     { color: "#0000FF", label: "Information" },
   ];
 
-  // useEffect(() => {
-  //   const tasksLocalStorage = localStorage.getItem("tasks");
-  //   const jsonDataTasks = tasksLocalStorage && JSON.parse(tasksLocalStorage);
+  useEffect(() => {
+    const delayDebounce = setTimeout(() => {
+      localStorage.setItem("tasks", JSON.stringify(tasks));
+    }, 2000);
+    return () => clearTimeout(delayDebounce);
+  }, [tasks]);
 
-  //   if (tasksLocalStorage) {
-  //     setTasks(jsonDataTasks);
-  //   }
-  // }, []);
+  useEffect(() => {
+    const tasksLocalStorage = localStorage.getItem("tasks");
+    const jsonDataTasks = tasksLocalStorage && JSON.parse(tasksLocalStorage);
 
-  // useEffect(() => {
-  //   localStorage.setItem("tasks", JSON.stringify(tasks));
-  // }, [tasks]);
+    if (tasksLocalStorage) {
+      setTasks(jsonDataTasks);
+    }
+  }, []);
 
   //Gerenciamento de itens (criação)
   const handleCreateItem = (taskData: Omit<tasksTypes, "taskId">) => {
