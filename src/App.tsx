@@ -139,7 +139,15 @@ function App() {
                 />
                 <List>
                   <Box className="checked-counter">
-                    <Typography variant="h6">
+                    <Typography
+                      variant="h6"
+                      style={{
+                        backgroundColor: "var(--primary-color)",
+                        color: "#ffffff",
+                        padding: "0.5rem",
+                        borderRadius: "0.5rem",
+                      }}
+                    >
                       Checked Tasks: {getCheckedCount()}/{tasks.length}
                     </Typography>
                   </Box>

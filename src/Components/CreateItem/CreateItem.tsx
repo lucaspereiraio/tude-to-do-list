@@ -11,7 +11,6 @@ import {
 } from "@mui/material";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import React, { ChangeEvent, useState } from "react";
-import "./CreateItem.css";
 
 interface newTaskTypes {
   taskText: string;
@@ -72,6 +71,7 @@ export const CreateItem = ({
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
+        justifyContent: "center",
         gap: "1rem",
         marginTop: "3rem",
         padding: "1rem",

@@ -11,7 +11,6 @@ import {
   TextField,
 } from "@mui/material";
 import React, { ChangeEvent, useState } from "react";
-import "./ToDoItem.css";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 interface colorOptionTypes {
@@ -75,42 +74,84 @@ export const ToDoItem = ({
   };
 
   return (
-    <Container>
-      <ListItem className="todo-item">
-        <ListItemIcon>
-          <Checkbox
-            edge="start"
-            checked={taskChecked}
-            onChange={handleTaskCheckChange}
-          />
-        </ListItemIcon>
-        <TextField
-          variant="standard"
-          value={taskText}
-          onChange={handleTaskTextChange}
+    <ListItem
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        gap: "1rem",
+        padding: "1rem",
+        borderRadius: "0.5rem",
+        boxShadow: "2",
+        backgroundColor: "var(--bg-s-color)",
+        margin: "1rem 0",
+      }}
+    >
+      <ListItemIcon>
+        <Checkbox
+          edge="start"
+          checked={taskChecked}
+          onChange={handleTaskCheckChange}
         />
-        <Select value={taskColor} onChange={handleTaskColorChange}>
-          {colorOptions.map((option) => (
-            <MenuItem key={option.color} value={option.color}>
-              <Box
-                className="color-dot"
-                style={{ backgroundColor: option.color }}
-              />
-              {option.label}
-            </MenuItem>
-          ))}
-        </Select>
+      </ListItemIcon>
+      <Box
+        display={"flex"}
+        flexDirection={"column"}
+        gap={"1rem"}
+        marginRight={"1.75rem"}
+      >
+        <Box display={"flex"} gap={"1rem"}>
+          <TextField
+            variant="outlined"
+            value={taskText}
+            onChange={handleTaskTextChange}
+            style={{ width: "16rem" }}
+          />
+          <Select
+            value={taskColor}
+            onChange={handleTaskColorChange}
+            style={{ width: "8rem" }}
+          >
+            {colorOptions.map((option) => (
+              <MenuItem
+                key={option.color}
+                value={option.color}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  padding: "0.5rem",
+                }}
+              >
+                <Box
+                  component="span"
+                  style={{
+                    display: "inline-block",
+                    width: "0.8rem",
+                    height: "0.8rem",
+                    border: "solid black 1px",
+                    borderRadius: "50%",
+                    marginRight: "1rem",
+                    backgroundColor: option.color,
+                  }}
+                />
+
+                {option.label}
+              </MenuItem>
+            ))}
+          </Select>
+        </Box>
         <TextField
-          variant="standard"
+          variant="outlined"
           multiline
-          rows={4}
+          rows={3}
           value={taskDescription}
           onChange={handleTaskDescriptionChange}
+          style={{ width: "25rem" }}
         />
-        <IconButton edge="end" aria-label="delete" onClick={onDelete}>
-          <DeleteIcon />
-        </IconButton>
-      </ListItem>
-    </Container>
+      </Box>
+      <IconButton edge="end" aria-label="delete" onClick={onDelete}>
+        <DeleteIcon />
+      </IconButton>
+    </ListItem>
   );
 };

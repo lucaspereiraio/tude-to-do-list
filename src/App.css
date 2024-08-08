@@ -15,11 +15,3 @@
   justify-content: center;
   text-align: center;
 }
-
-.checked-counter {
-  padding: 2;
-  margin: 2;
-  border: solid 1px;
-  border-radius: 0.25rem;
-  background-color: var(--second-bgc);
-}
