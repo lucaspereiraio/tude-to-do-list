@@ -22,15 +22,13 @@ import { PrintList } from "./Components/PrintList/PrintList";
 
 //Funcionalidades NECESSARIAS
 
-//localstorage
-//ischecked?
 //Tela de listar atividades (e botão no create)
 //required no todo items
 //fazer design e responsividade
 
 interface tasksTypes {
   taskId: number;
-  // taskChecked: boolean;
+  taskChecked: boolean;
   taskText: string;
   taskColor: string;
   taskDescription: string;
@@ -51,7 +49,7 @@ function App() {
   useEffect(() => {
     const delayDebounce = setTimeout(() => {
       localStorage.setItem("tasks", JSON.stringify(tasks));
-    }, 2000);
+    }, 1000);
     return () => clearTimeout(delayDebounce);
   }, [tasks]);
 
@@ -65,10 +63,13 @@ function App() {
   }, []);
 
   //Gerenciamento de itens (criação)
-  const handleCreateItem = (taskData: Omit<tasksTypes, "taskId">) => {
+  const handleCreateItem = (
+    taskData: Omit<tasksTypes, "taskId" | "taskChecked">
+  ) => {
     const newTask: tasksTypes = {
       //Id inicial será 1 ou terá o incremento de 1
       taskId: tasks.length ? tasks[tasks.length - 1].taskId + 1 : 1,
+      taskChecked: false,
       taskText: taskData.taskText,
       taskColor: taskData.taskColor,
       taskDescription: taskData.taskDescription,
@@ -85,6 +86,7 @@ function App() {
   //Gerenciamento de itens (atualização)
   const handleUpdateItem = (
     taskId: number,
+    newCheck: boolean,
     newText: string,
     newDesc: string,
     newColor: string
@@ -94,6 +96,7 @@ function App() {
         task.taskId === taskId
           ? {
               ...task,
+              taskChecked: newCheck,
               taskText: newText,
               taskDescription: newDesc,
               taskColor: newColor,
@@ -136,6 +139,7 @@ function App() {
                     <ToDoItem
                       key={task.taskId}
                       taskId={task.taskId}
+                      check={task.taskChecked}
                       text={task.taskText}
                       color={task.taskColor}
                       description={task.taskDescription}
