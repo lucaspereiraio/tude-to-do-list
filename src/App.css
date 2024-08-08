@@ -1,4 +1,18 @@
-.App {
+:root {
+  --primary-color: #007bff;
+  --secondary-color: #6c757d;
+  --action-color: #28a745;
+  --alert-color: #dc3545;
+  --bg-color: #f8f9fa;
+  --bg-s-color: #e0ecef;
+  --text-color: #343a40;
+  --text-s-color: #6c757d;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
 }
 
@@ -7,5 +21,5 @@
   margin: 2;
   border: solid 1px;
   border-radius: 0.25rem;
-  background-color: wheat;
+  background-color: var(--second-bgc);
 }

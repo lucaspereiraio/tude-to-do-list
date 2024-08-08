@@ -11,7 +11,6 @@ import { PrintList } from "./Components/PrintList/PrintList";
 
 // Funcionalidades UX
 
-//icone adicionar no create task
 //Autofocus na proxima do create
 //onEnter criar
 //onEnter no todo sai o da edição
@@ -125,8 +124,8 @@ function App() {
 
   return (
     <Router>
-      <Container className="App">
-        <Header />
+      <Header />
+      <Container className="container">
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />

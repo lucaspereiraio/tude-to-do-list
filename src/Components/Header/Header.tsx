@@ -1,12 +1,26 @@
 import { Container, Typography } from "@mui/material";
 import React from "react";
-import "./Header.css";
 
 export const Header = () => {
   return (
-    <Container className="header">
-      <Typography className="header-title" variant="h4" component="h1" mb={2}>
-        Tude Diniz To-Do List
+    <Container
+      sx={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: "var(--primary-color)",
+        height: "5rem",
+      }}
+    >
+      <Typography
+        sx={{
+          color: "var(--text-color)",
+          fontSize: "2rem",
+        }}
+        variant="h4"
+        component="h1"
+      >
+        To-Do List
       </Typography>
     </Container>
   );
