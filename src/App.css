@@ -1,10 +1,10 @@
 :root {
   --primary-color: #4ba1ff;
   --secondary-color: #6c757d;
-  --action-color: #28a745;
   --alert-color: #dc3545;
   --bg-color: #f8f9fa;
   --bg-s-color: #d4e8ff;
   --text-color: #343a40;
   --text-s-color: #ffffff;
+  --checked-color: #e0e0e0;
 }

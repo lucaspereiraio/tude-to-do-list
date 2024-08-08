@@ -81,9 +81,12 @@ export const ToDoItem = ({
         justifyContent: "space-between",
         gap: "1rem",
         padding: "1rem",
+        border: `2px solid ${color}`,
         borderRadius: "0.5rem",
         boxShadow: "2",
-        backgroundColor: "var(--bg-s-color)",
+        backgroundColor: taskChecked
+          ? "var(--checked-color)"
+          : "var(--text-s-color)",
         margin: "1rem 0",
       }}
     >
