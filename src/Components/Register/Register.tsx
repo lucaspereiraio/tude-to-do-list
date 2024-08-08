@@ -13,6 +13,7 @@ import {
 import React, { ChangeEvent, useState } from "react";
 import "./Register.css";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { Link, useNavigate } from "react-router-dom";
 
 const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const isName = /^[A-Za-z\s]+$/;
@@ -27,6 +28,9 @@ export const Register = () => {
   const [nameError, setNameError] = useState<string>("");
   const [emailError, setEmailError] = useState<string>("");
   const [passwordError, setPasswordError] = useState<string>("");
+
+  //Variável de navegação para outra rota (gerenciamento do Register)
+  const navigate = useNavigate();
 
   //Gerenciamento de registro
   const handleRegister = () => {
@@ -57,6 +61,7 @@ export const Register = () => {
       console.log("Name:", name);
       console.log("Email:", email);
       console.log("Password:", password);
+      navigate("/create");
     }
   };
 
@@ -148,7 +153,9 @@ export const Register = () => {
           <Button variant="contained" onClick={handleRegister}>
             Register
           </Button>
-          <Button variant="text">Already have an account? Login</Button>
+          <Button variant="text" component={Link} to="/login">
+            Already have an account? Login
+          </Button>
         </Box>
       </Box>
     </Container>

@@ -13,6 +13,7 @@ import {
 import React, { ChangeEvent, useState } from "react";
 import "./Login.css";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { Link, useNavigate } from "react-router-dom";
 
 //Regex para validar o email
 const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -25,6 +26,9 @@ export const Login = () => {
   //States de erro
   const [emailError, setEmailError] = useState<string>("");
   const [passwordError, setPasswordError] = useState<string>("");
+
+  //Variável de navegação para outra rota (gerenciamento do Login)
+  const navigate = useNavigate();
 
   //Gerenciamento de login
   const handleLogin = () => {
@@ -47,6 +51,7 @@ export const Login = () => {
     if (valid) {
       console.log("Email:", email);
       console.log("Password:", password);
+      navigate("/create");
     }
   };
 
@@ -120,7 +125,9 @@ export const Login = () => {
           <Button variant="contained" onClick={handleLogin}>
             Login
           </Button>
-          <Button variant="text">Register now</Button>
+          <Button variant="text" component={Link} to="/register">
+            Register now
+          </Button>
         </Box>
       </Box>
     </Container>

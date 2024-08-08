@@ -7,6 +7,7 @@ import { Header } from "./Components/Header/Header";
 import { CreateItem } from "./Components/CreateItem/CreateItem";
 import { ToDoItem } from "./Components/ToDoItem/ToDoItem";
 import { List } from "@mui/material";
+import { PrintList } from "./Components/PrintList/PrintList";
 
 // Funcionalidades UX
 
@@ -23,11 +24,8 @@ import { List } from "@mui/material";
 
 //localstorage
 //ischecked?
-//Tela de listar atividades
-//fazer rotas de paginas
-//botoes funcionais registro e login
+//Tela de listar atividades (e botão no create)
 //required no todo items
-//fazer rotas de paginas
 //fazer design e responsividade
 
 interface tasksTypes {
@@ -147,6 +145,7 @@ function App() {
               </>
             }
           />
+          <Route path="/print" element={<PrintList tasks={tasks} />} />
           <Route path="/" element={<Login />} />
         </Routes>
       </div>
