@@ -22,8 +22,6 @@ import { PrintList } from "./Components/PrintList/PrintList";
 
 //required no todo items
 //testes jest
-//printlist texto desc. passando da tela no mobile
-//fazer responsividade
 
 interface tasksTypes {
   taskId: number;

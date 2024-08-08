@@ -38,12 +38,15 @@ export const PrintList = ({ tasks }: { tasks: tasksTypes[] }) => {
                   border: "solid black 1px",
                   borderRadius: "50%",
                   marginRight: "1rem",
+                  flexShrink: 0,
                 }}
               />
               <Typography
                 variant="h6"
                 style={{
                   textDecoration: task.taskChecked ? "line-through" : "none",
+                  wordBreak: "break-word",
+                  overflowWrap: "break-word",
                 }}
               >
                 {task.taskText}
@@ -51,7 +54,11 @@ export const PrintList = ({ tasks }: { tasks: tasksTypes[] }) => {
             </Box>
             <Typography
               variant="body2"
-              style={{ color: "var(--secondary-color)" }}
+              style={{
+                color: "var(--secondary-color)",
+                wordBreak: "break-word",
+                overflowWrap: "break-word",
+              }}
             >
               {task.taskDescription}
             </Typography>
