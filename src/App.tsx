@@ -16,7 +16,6 @@ import { PrintList } from "./Components/PrintList/PrintList";
 //onEnter criar
 //onEnter no todo sai o da edição
 //Formatar color picker
-//checked counter
 //erro typescript
 //erro console
 

@@ -9,6 +9,7 @@ import {
   SelectChangeEvent,
   TextField,
 } from "@mui/material";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
 import React, { ChangeEvent, useState } from "react";
 import "./CreateItem.css";
 
@@ -112,7 +113,7 @@ export const CreateItem = ({
         onClick={handleSubmit}
         disabled={!taskText || !taskColor || !taskDescription}
       >
-        Create a new task
+        Create a new task <AddCircleIcon className="add-icon" />
       </Button>
     </Container>
   );
