@@ -11,7 +11,6 @@ import {
   Typography,
 } from "@mui/material";
 import React, { ChangeEvent, useState } from "react";
-import "./Login.css";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -75,60 +74,84 @@ export const Login = () => {
   };
 
   return (
-    <Container>
-      <Box className="outter-box">
-        <Typography className="login-title" variant="h4" component="h1" mb={2}>
-          Login
-        </Typography>
-        <Box className="inner-box-inputs">
-          <TextField
+    <Container
+      style={{
+        display: "flex",
+        height: "full",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyItems: "center",
+        marginTop: "3rem",
+        padding: "1rem",
+        borderRadius: "1rem",
+        boxShadow: "3",
+        gap: "1rem",
+        backgroundColor: "var(--bg-s-color)",
+      }}
+    >
+      <Typography style={{ marginBottom: "1rem" }} variant="h4" component="h1">
+        Login
+      </Typography>
+      <Box display={"flex"} gap={"1rem"}>
+        <TextField
+          required
+          label="Email"
+          variant="outlined"
+          value={email}
+          onChange={handleEmail}
+          autoComplete="email"
+          error={Boolean(emailError)}
+          helperText={emailError}
+          style={{ width: "16rem" }}
+        />
+        <FormControl required variant="outlined">
+          <InputLabel htmlFor="outlined-adornment-password">
+            Password
+          </InputLabel>
+          <OutlinedInput
             required
-            label="Email"
-            variant="outlined"
-            value={email}
-            onChange={handleEmail}
-            autoComplete="email"
-            error={Boolean(emailError)}
-            helperText={emailError}
+            id="outlined-adornment-password"
+            type={showPassword ? "text" : "password"}
+            value={password}
+            onChange={handlePassword}
+            autoComplete="current-password"
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={handleClickShowPassword}
+                  onMouseDown={handleMouseDownPassword}
+                  edge="end"
+                >
+                  {showPassword ? <VisibilityOff /> : <Visibility />}
+                </IconButton>
+              </InputAdornment>
+            }
+            label="Password"
+            style={{ width: "16rem" }}
           />
-          <FormControl required variant="outlined">
-            <InputLabel htmlFor="outlined-adornment-password">
-              Password
-            </InputLabel>
-            <OutlinedInput
-              required
-              id="outlined-adornment-password"
-              type={showPassword ? "text" : "password"}
-              value={password}
-              onChange={handlePassword}
-              autoComplete="current-password"
-              endAdornment={
-                <InputAdornment position="end">
-                  <IconButton
-                    aria-label="toggle password visibility"
-                    onClick={handleClickShowPassword}
-                    onMouseDown={handleMouseDownPassword}
-                    edge="end"
-                  >
-                    {showPassword ? <VisibilityOff /> : <Visibility />}
-                  </IconButton>
-                </InputAdornment>
-              }
-              label="Password"
-            />
-            {passwordError && (
-              <Typography color="error">{passwordError}</Typography>
-            )}
-          </FormControl>
-        </Box>
-        <Box className="inner-box-buttons">
-          <Button variant="contained" onClick={handleLogin}>
-            Login
-          </Button>
-          <Button variant="text" component={Link} to="/register">
-            Register now
-          </Button>
-        </Box>
+          {passwordError && (
+            <Typography color="error">{passwordError}</Typography>
+          )}
+        </FormControl>
+      </Box>
+      <Box display={"flex"} flexDirection={"column"} gap={"0.5rem"}>
+        <Button
+          variant="contained"
+          onClick={handleLogin}
+          style={{ width: "9rem", height: "2rem" }}
+        >
+          Login
+        </Button>
+        <Typography fontSize={"0.7rem"}>OR</Typography>
+        <Button
+          variant="text"
+          component={Link}
+          to="/register"
+          style={{ width: "9rem", height: "2rem" }}
+        >
+          Register now
+        </Button>
       </Box>
     </Container>
   );

@@ -4,7 +4,7 @@ import React from "react";
 export const Header = () => {
   return (
     <Container
-      sx={{
+      style={{
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -13,7 +13,7 @@ export const Header = () => {
       }}
     >
       <Typography
-        sx={{
+        style={{
           color: "var(--text-color)",
           fontSize: "2rem",
         }}
