@@ -79,7 +79,6 @@ export const ToDoItem = ({
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
-        gap: "1rem",
         padding: "1rem",
         border: `2px solid ${color}`,
         borderRadius: "0.5rem",
@@ -103,54 +102,63 @@ export const ToDoItem = ({
         gap={"1rem"}
         marginRight={"1.75rem"}
       >
-        <Box display={"flex"} gap={"1rem"}>
+        <Box
+          display={"flex"}
+          flexDirection={{ xs: "column", sm: "row" }}
+          gap={"1rem"}
+        >
+          <Box width={{ xs: "8rem", sm: "16rem" }}>
+            <TextField
+              variant="outlined"
+              value={taskText}
+              onChange={handleTaskTextChange}
+              fullWidth
+            />
+          </Box>
+          <Box width={{ xs: "8rem", sm: "8rem" }}>
+            <Select
+              value={taskColor}
+              onChange={handleTaskColorChange}
+              fullWidth
+            >
+              {colorOptions.map((option) => (
+                <MenuItem
+                  key={option.color}
+                  value={option.color}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    padding: "0.5rem",
+                  }}
+                >
+                  <Box
+                    component="span"
+                    style={{
+                      display: "inline-block",
+                      width: "0.8rem",
+                      height: "0.8rem",
+                      border: "solid black 1px",
+                      borderRadius: "50%",
+                      marginRight: "1rem",
+                      backgroundColor: option.color,
+                    }}
+                  />
+                  {option.label}
+                </MenuItem>
+              ))}
+            </Select>
+          </Box>
+        </Box>
+        <Box width={{ xs: "8rem", sm: "25rem" }}>
           <TextField
             variant="outlined"
-            value={taskText}
-            onChange={handleTaskTextChange}
-            style={{ width: "16rem" }}
+            multiline
+            rows={3}
+            value={taskDescription}
+            onChange={handleTaskDescriptionChange}
+            fullWidth
           />
-          <Select
-            value={taskColor}
-            onChange={handleTaskColorChange}
-            style={{ width: "8rem" }}
-          >
-            {colorOptions.map((option) => (
-              <MenuItem
-                key={option.color}
-                value={option.color}
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  padding: "0.5rem",
-                }}
-              >
-                <Box
-                  component="span"
-                  style={{
-                    display: "inline-block",
-                    width: "0.8rem",
-                    height: "0.8rem",
-                    border: "solid black 1px",
-                    borderRadius: "50%",
-                    marginRight: "1rem",
-                    backgroundColor: option.color,
-                  }}
-                />
-
-                {option.label}
-              </MenuItem>
-            ))}
-          </Select>
         </Box>
-        <TextField
-          variant="outlined"
-          multiline
-          rows={3}
-          value={taskDescription}
-          onChange={handleTaskDescriptionChange}
-          style={{ width: "25rem" }}
-        />
       </Box>
       <IconButton edge="end" aria-label="delete" onClick={onDelete}>
         <DeleteIcon />

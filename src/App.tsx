@@ -6,7 +6,7 @@ import { Register } from "./Components/Register/Register";
 import { Header } from "./Components/Header/Header";
 import { CreateItem } from "./Components/CreateItem/CreateItem";
 import { ToDoItem } from "./Components/ToDoItem/ToDoItem";
-import { Box, Button, Container, List, Typography } from "@mui/material";
+import { Button, Container, List, Typography } from "@mui/material";
 import { PrintList } from "./Components/PrintList/PrintList";
 
 // Funcionalidades UX
@@ -21,6 +21,8 @@ import { PrintList } from "./Components/PrintList/PrintList";
 //Funcionalidades NECESSARIAS
 
 //required no todo items
+//mensagens de erro dos inputs (login e register)
+//printlist texto desc. passando da tela no mobile
 //fazer responsividade
 
 interface tasksTypes {

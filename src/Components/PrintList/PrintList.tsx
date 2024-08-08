@@ -1,11 +1,4 @@
-import {
-  Box,
-  Container,
-  List,
-  ListItem,
-  ListItemText,
-  Typography,
-} from "@mui/material";
+import { Box, Container, List, ListItem, Typography } from "@mui/material";
 import React from "react";
 
 interface tasksTypes {
