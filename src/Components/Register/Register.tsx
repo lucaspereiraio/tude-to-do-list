@@ -101,7 +101,7 @@ export const Register = () => {
         flexDirection: "column",
         alignItems: "center",
         justifyItems: "center",
-        marginTop: "3rem",
+        margin: "3rem 0",
         padding: "1rem",
         borderRadius: "1rem",
         boxShadow: "3",
@@ -112,7 +112,11 @@ export const Register = () => {
       <Typography variant="h4" component="h1">
         Register
       </Typography>
-      <Box display={"flex"} gap={"1rem"}>
+      <Box
+        display={"flex"}
+        gap={"1rem"}
+        flexDirection={{ xs: "column", md: "row" }}
+      >
         <TextField
           required
           label="Name"

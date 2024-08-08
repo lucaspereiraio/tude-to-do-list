@@ -20,9 +20,8 @@ import { PrintList } from "./Components/PrintList/PrintList";
 
 //Funcionalidades NECESSARIAS
 
-//Tela de listar atividades (e botão no list)
 //required no todo items
-//fazer design e responsividade
+//fazer responsividade
 
 interface tasksTypes {
   taskId: number;

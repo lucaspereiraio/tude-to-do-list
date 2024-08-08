@@ -81,7 +81,7 @@ export const Login = () => {
         flexDirection: "column",
         alignItems: "center",
         justifyItems: "center",
-        marginTop: "3rem",
+        margin: "3rem 0",
         padding: "1rem",
         borderRadius: "1rem",
         boxShadow: "3",
@@ -92,7 +92,11 @@ export const Login = () => {
       <Typography style={{ marginBottom: "1rem" }} variant="h4" component="h1">
         Login
       </Typography>
-      <Box display={"flex"} gap={"1rem"}>
+      <Box
+        display={"flex"}
+        flexDirection={{ xs: "column", md: "row" }}
+        gap={"1rem"}
+      >
         <TextField
           required
           label="Email"
