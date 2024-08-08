@@ -6,7 +6,7 @@ import { Register } from "./Components/Register/Register";
 import { Header } from "./Components/Header/Header";
 import { CreateItem } from "./Components/CreateItem/CreateItem";
 import { ToDoItem } from "./Components/ToDoItem/ToDoItem";
-import { List } from "@mui/material";
+import { Box, Container, List, Typography } from "@mui/material";
 import { PrintList } from "./Components/PrintList/PrintList";
 
 // Funcionalidades UX
@@ -119,9 +119,14 @@ function App() {
     });
   };
 
+  //Contador de checkeds
+  const getCheckedCount = () => {
+    return tasks.filter((task) => task.taskChecked).length;
+  };
+
   return (
     <Router>
-      <div className="App">
+      <Container className="App">
         <Header />
         <Routes>
           <Route path="/login" element={<Login />} />
@@ -135,6 +140,11 @@ function App() {
                   colorOptions={colorOptions}
                 />
                 <List>
+                  <Box className="checked-counter">
+                    <Typography variant="h6">
+                      Checked Tasks: {getCheckedCount()}
+                    </Typography>
+                  </Box>
                   {tasks.map((task) => (
                     <ToDoItem
                       key={task.taskId}
@@ -155,7 +165,7 @@ function App() {
           <Route path="/print" element={<PrintList tasks={tasks} />} />
           <Route path="/" element={<Login />} />
         </Routes>
-      </div>
+      </Container>
     </Router>
   );
 }
