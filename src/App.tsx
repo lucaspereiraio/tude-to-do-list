@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import "./App.css";
 import { Login } from "./Components/Login/Login";
 import { Register } from "./Components/Register/Register";
 import { Header } from "./Components/Header/Header";
 import { CreateItem } from "./Components/CreateItem/CreateItem";
 import { ToDoItem } from "./Components/ToDoItem/ToDoItem";
-import { Box, Container, List, Typography } from "@mui/material";
+import { Box, Button, Container, List, Typography } from "@mui/material";
 import { PrintList } from "./Components/PrintList/PrintList";
 
 // Funcionalidades UX
@@ -20,7 +20,7 @@ import { PrintList } from "./Components/PrintList/PrintList";
 
 //Funcionalidades NECESSARIAS
 
-//Tela de listar atividades (e botão no create)
+//Tela de listar atividades (e botão no list)
 //required no todo items
 //fazer design e responsividade
 
@@ -125,7 +125,15 @@ function App() {
   return (
     <Router>
       <Header />
-      <Container className="container">
+      <Container
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          textAlign: "center",
+        }}
+      >
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
@@ -138,19 +146,26 @@ function App() {
                   colorOptions={colorOptions}
                 />
                 <List>
-                  <Box className="checked-counter">
-                    <Typography
-                      variant="h6"
-                      style={{
-                        backgroundColor: "var(--primary-color)",
-                        color: "#ffffff",
-                        padding: "0.5rem",
-                        borderRadius: "0.5rem",
-                      }}
-                    >
-                      Checked Tasks: {getCheckedCount()}/{tasks.length}
-                    </Typography>
-                  </Box>
+                  <Typography
+                    variant="h6"
+                    style={{
+                      backgroundColor: "var(--primary-color)",
+                      color: "#ffffff",
+                      padding: "0.5rem",
+                      borderRadius: "0.5rem",
+                    }}
+                  >
+                    Checked Tasks: {getCheckedCount()}/{tasks.length}
+                  </Typography>
+                  <Button
+                    variant="outlined"
+                    component={Link}
+                    to="/print"
+                    style={{ marginTop: "1rem" }}
+                    disabled={tasks.length === 0}
+                  >
+                    Create the tasks print list
+                  </Button>
                   {tasks.map((task) => (
                     <ToDoItem
                       key={task.taskId}

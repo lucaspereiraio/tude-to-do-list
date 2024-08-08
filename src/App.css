@@ -8,10 +8,3 @@
   --text-color: #343a40;
   --text-s-color: #ffffff;
 }
-
-.container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}

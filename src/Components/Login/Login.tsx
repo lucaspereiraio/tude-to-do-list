@@ -139,16 +139,16 @@ export const Login = () => {
         <Button
           variant="contained"
           onClick={handleLogin}
-          style={{ width: "9rem", height: "2rem" }}
+          style={{ width: "10rem", height: "2rem" }}
         >
           Login
         </Button>
         <Typography fontSize={"0.7rem"}>OR</Typography>
         <Button
-          variant="text"
+          variant="outlined"
           component={Link}
           to="/register"
-          style={{ width: "9rem", height: "2rem" }}
+          style={{ width: "10rem", height: "2rem" }}
         >
           Register now
         </Button>

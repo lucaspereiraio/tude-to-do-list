@@ -164,11 +164,20 @@ export const Register = () => {
         </FormControl>
       </Box>
       <Box display={"flex"} flexDirection={"column"} gap={"0.5rem"}>
-        <Button variant="contained" onClick={handleRegister}>
+        <Button
+          variant="contained"
+          onClick={handleRegister}
+          style={{ width: "10rem" }}
+        >
           Register
         </Button>
         <Typography fontSize={"0.7rem"}>Already have an account?</Typography>
-        <Button variant="text" component={Link} to="/login">
+        <Button
+          variant="outlined"
+          component={Link}
+          to="/login"
+          style={{ width: "10rem" }}
+        >
           Login
         </Button>
       </Box>
