@@ -67,53 +67,67 @@ export const CreateItem = ({
   };
 
   return (
-    <Container>
-      <TextField
-        required
-        className="task"
-        label="Task"
-        variant="outlined"
-        value={taskText}
-        onChange={handleTaskTextChange}
-      />
-      <FormControl required className="priority-form">
-        <InputLabel>Priority</InputLabel>
-        <Select
-          className="priority-selector"
-          label="Priority"
-          value={taskColor}
-          onChange={handleTaskColorChange}
-        >
-          {colorOptions.map((option) => (
-            <MenuItem
-              className="priority-option"
-              key={option.color}
-              value={option.color}
-            >
-              <Box
-                className="color-dot-selector"
-                style={{ backgroundColor: option.color }}
-              />
-              {option.label}
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
+    <Container
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        gap: "1rem",
+        marginTop: "3rem",
+        padding: "1rem",
+      }}
+    >
+      <Box display={"flex"} gap={"1rem"}>
+        <TextField
+          required
+          label="Task"
+          variant="outlined"
+          value={taskText}
+          onChange={handleTaskTextChange}
+          style={{ width: "16rem" }}
+        />
+        <FormControl required style={{ width: "8rem" }}>
+          <InputLabel>Priority</InputLabel>
+          <Select
+            label="Priority"
+            value={taskColor}
+            onChange={handleTaskColorChange}
+          >
+            {colorOptions.map((option) => (
+              <MenuItem key={option.color} value={option.color}>
+                <Box
+                  style={{
+                    width: "1rem",
+                    height: "1rem",
+                    border: "solid black 1px",
+                    borderRadius: "50%",
+                    marginRight: "1rem",
+                    backgroundColor: option.color,
+                  }}
+                />
+                {option.label}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+      </Box>
       <TextField
         required
         label="Description"
         multiline
-        rows={4}
+        rows={3}
         value={taskDescription}
         onChange={handleTaskDescriptionChange}
+        style={{ width: "25rem" }}
       />
       <Button
-        className="create-task-button"
         variant="contained"
         onClick={handleSubmit}
         disabled={!taskText || !taskColor || !taskDescription}
+        style={{ width: "25rem", height: "3.5rem" }}
       >
-        Create a new task <AddCircleIcon className="add-icon" />
+        Create a new task{" "}
+        <AddCircleIcon style={{ marginLeft: "0.5rem", fontSize: "1.5rem" }} />
       </Button>
     </Container>
   );

@@ -140,7 +140,7 @@ function App() {
                 <List>
                   <Box className="checked-counter">
                     <Typography variant="h6">
-                      Checked Tasks: {getCheckedCount()}
+                      Checked Tasks: {getCheckedCount()}/{tasks.length}
                     </Typography>
                   </Box>
                   {tasks.map((task) => (

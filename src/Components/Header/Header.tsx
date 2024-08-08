@@ -14,7 +14,7 @@ export const Header = () => {
     >
       <Typography
         style={{
-          color: "var(--text-color)",
+          color: "var(--text-s-color)",
           fontSize: "2rem",
         }}
         variant="h4"
