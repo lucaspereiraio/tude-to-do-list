@@ -1,7 +1,6 @@
 import {
   Box,
   Checkbox,
-  Container,
   IconButton,
   ListItem,
   ListItemIcon,

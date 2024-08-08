@@ -9,20 +9,6 @@ import { ToDoItem } from "./Components/ToDoItem/ToDoItem";
 import { Button, Container, List, Typography } from "@mui/material";
 import { PrintList } from "./Components/PrintList/PrintList";
 
-// Funcionalidades UX
-
-//Autofocus na proxima do create
-//onEnter criar
-//onEnter no todo sai o da edição
-//Formatar color picker
-//erro typescript
-//erro console
-
-//Funcionalidades NECESSARIAS
-
-//required no todo items
-//testes jest
-
 interface tasksTypes {
   taskId: number;
   taskChecked: boolean;
