@@ -114,7 +114,7 @@ export const ToDoItem = ({
               fullWidth
             />
           </Box>
-          <Box width={{ xs: "8rem", sm: "8rem" }}>
+          <Box width={"8rem"}>
             <Select
               value={taskColor}
               onChange={handleTaskColorChange}

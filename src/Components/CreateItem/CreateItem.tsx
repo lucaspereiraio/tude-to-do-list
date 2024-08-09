@@ -93,15 +93,27 @@ export const CreateItem = ({
         <Box width={{ xs: "16rem", sm: "8rem" }}>
           <FormControl required fullWidth>
             <InputLabel>Priority</InputLabel>
+
             <Select
               label="Priority"
               value={taskColor}
               onChange={handleTaskColorChange}
+              fullWidth
             >
               {colorOptions.map((option) => (
-                <MenuItem key={option.color} value={option.color}>
+                <MenuItem
+                  key={option.color}
+                  value={option.color}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    padding: "0.5rem",
+                  }}
+                >
                   <Box
+                    component="span"
                     style={{
+                      display: "inline-block",
                       width: "1rem",
                       height: "1rem",
                       border: "solid black 1px",
