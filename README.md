@@ -24,7 +24,7 @@ O projeto é composto pelos seguintes componentes principais:
 
 - App.tsx: Componente principal que gerencia o estado global das tarefas e a interação entre os componentes.
 - Header.tsx: Componente de cabeçalho que exibe o título da aplicação.
-- Login.tsx e Register.tsx: Componentes de autenticação para login e registro de usuários.
+- Login.tsx e Register.tsx: Componentes de validação de login e registro de usuários.
 - CreateItem.tsx: Componente que contém o formulário para criar novas tarefas.
 - ToDoItem.tsx: Componente que exibe e permite editar ou excluir uma tarefa existente.
 - PrintList.tsx: componente que printa a lista de tarefas por completo.
